@@ -27,6 +27,7 @@ const Lecture = ({ user }) => {
     try {
       const { data } = await axios.get(`${server}/api/lectures/${params.id}`, {
         headers: {
+          "Content-Type": "multipart/form-data", // Added Content-Type header
           token: localStorage.getItem("token"),
         },
       });
@@ -43,6 +44,7 @@ const Lecture = ({ user }) => {
     try {
       const { data } = await axios.get(`${server}/api/lecture/${id}`, {
         headers: {
+          
           token: localStorage.getItem("token"),
         },
       });
