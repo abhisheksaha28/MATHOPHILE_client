@@ -9,11 +9,11 @@ import axios from "axios";
 import { server } from "../../main";
 
 const categories = [
-  "Web Development",
-  "App Development",
-  "Game Development",
-  "Data Science",
-  "Artificial Intelligence",
+  "Trigonometry",
+  "Higher Algebra",
+  "Calculus",
+  "Co-ordinate Geometry",
+  "Vector & 3D",
 ];
 
 const AdminCourses = ({ user }) => {
@@ -39,11 +39,27 @@ const AdminCourses = ({ user }) => {
 
     reader.onloadend = () => {
       setImagePrev(reader.result);
+      
       setImage(file);
     };
+     
   };
+  console.log(imagePrev)//wwe will get the base64 url of the image , if not written this ine of code , no issues, goto inspect, go application, below down go to top , hen image, there u can see the image base64 url
 
-  const { courses, fetchCourses } = CourseData();
+  const { course , courses, fetchCourses } = CourseData();
+
+  // const changeImageHandler = async() => {
+  //   try {
+  //     const { data } = await axios.get(course.image);
+  //     setImage(data.imageUrl);  // Assuming data contains imageUrl from Cloudinary
+  //   }   catch (err) {
+  //     console.error("Failed to fetch",err)
+      
+  //   }
+  // };
+
+
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -57,11 +73,12 @@ const AdminCourses = ({ user }) => {
     myForm.append("price", price);
     myForm.append("createdBy", createdBy);
     myForm.append("duration", duration);
-    myForm.append("file", image);
+    myForm.append("image", image);
 
     try {
       const { data } = await axios.post(`${server}/api/course/new`, myForm, {
         headers: {
+          "Content-Type": "multipart/form-data", // Added Content-Type header
           token: localStorage.getItem("token"),
         },
       });
@@ -155,8 +172,10 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
+                <label htmlFor="text">Course Image</label>
                 <input type="file" required onChange={changeImageHandler} />
-                {imagePrev && <img src={imagePrev} alt="" width={300} />}
+                {/* <input type="file" required onChange={ (e)=>console.log(e)} /> */}
+              {imagePrev && <img src={imagePrev} alt="" width={300} />}
 
                 <button
                   type="submit"

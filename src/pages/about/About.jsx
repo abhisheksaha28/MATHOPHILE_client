@@ -52,14 +52,14 @@ const About = () => {
         </p>
         <ul>
           <li><strong>Email:</strong> abhinewmail2@gmail.com</li>
-          <li><strong>Phone:</strong> (123) 7005650209</li>
+          <li><strong>Phone:</strong> (+91) 7005650209</li>
           <li><strong>Address:</strong> Netaji Chowmuhani,Agartala,Tripura(W)</li>
         </ul>
         <p>
           Follow us on social media to stay updated on the latest news and features:
         </p>
         <ul>
-          <li><strong>LinkedIN:</strong> <a href="https://www.linkedin.com/in/abhishek-saha-193990230/" target="_blank" rel="noopener noreferrer">facebook.com/mathophile</a></li>
+          <li><strong>LinkedIN:</strong> <a href="https://www.linkedin.com/in/abhishek-saha-193990230/" target="_blank" rel="noopener noreferrer">linkedin.com/mathophile</a></li>
           <li><strong>Twitter:</strong> <a href="https://x.com/king_abhishek28" target="_blank" rel="noopener noreferrer">twitter.com/mathophile</a></li>
           
         </ul>

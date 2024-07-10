@@ -39,7 +39,7 @@ const CourseDescription = ({ user }) => {
     );
 
     const options = {
-      key: "rzp_test_yOMeMyaj2wlvTt", // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_MovZu1AHN6Gwe5", // Enter the Key ID generated from the Dashboard
       amount: order.id, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "MATHOPHILE", //your business name
@@ -95,7 +95,7 @@ const CourseDescription = ({ user }) => {
             <div className="course-description">
               <div className="course-header">
                 <img
-                  src={`${server}/${course.image}`}
+                  src={course.image}
                   alt=""
                   className="course-image"
                 />
@@ -112,12 +112,14 @@ const CourseDescription = ({ user }) => {
 
               {user && user.subscription.includes(course._id) ? (
                 <button
+                // if user has buyed
                   onClick={() => navigate(`/course/study/${course._id}`)}
                   className="common-btn"
                 >
                   Study
                 </button>
               ) : (
+                // user has no buyed
                 <button onClick={checkoutHandler} className="common-btn">
                   Buy Now
                 </button>

@@ -73,7 +73,7 @@ const Lecture = ({ user }) => {
 
     myForm.append("title", title);
     myForm.append("description", description);
-    myForm.append("file", video);
+    myForm.append("video", video);
 
     try {
       const { data } = await axios.post(
@@ -81,6 +81,7 @@ const Lecture = ({ user }) => {
         myForm,
         {
           headers: {
+            "Content-Type": "multipart/form-data", // Added Content-Type header
             token: localStorage.getItem("token"),
           },
         }
@@ -135,7 +136,7 @@ const Lecture = ({ user }) => {
                   {lecture.video ? (
                     <>
                       <video
-                        src={`${server}/${lecture.video}`}
+                        src={lecture.video}
                         width={"100%"}
                         controls
                         controlsList="nodownload noremoteplayback"

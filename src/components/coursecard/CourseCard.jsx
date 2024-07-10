@@ -31,16 +31,22 @@ const CourseCard = ({ course }) => {
   };
   return (
     <div className="course-card">
-      <img src={`${server}/${course.image}`} alt="" className="course-image" />
+       {/* <img src={`${server}/${course.image}`} alt="" className="course-image" /> */}
+      <img src={course.image} alt="" className="course-image" />
       <h3>{course.title}</h3>
       <p>Instructor- {course.createdBy}</p>
       <p>Duration- {course.duration} weeks</p>
       <p>Price- ₹{course.price}</p>
+      {/* check if user is authenticated, yhen only he will go to course card, else, will be navigated to login */}
+      {/* a?b:c => if a true, then b , else c */}
       {isAuth ? (
+        // if user is authenticated, check whether user is admin or not
         <>
           {user && user.role !== "admin" ? (
             <>
+            {/* if user is not admin , then check whether the user has buyed/subscribed this course or not */}
               {user.subscription.includes(course._id) ? (
+                // if user is subsribed to this page, he is directed to the course study page, where there are lectures
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
                   className="common-btn"
@@ -48,6 +54,7 @@ const CourseCard = ({ course }) => {
                   Study
                 </button>
               ) : (
+                //if user has not subscribed, he will be directed to course description page where Buy Course option will be there
                 <button
                   onClick={() => navigate(`/course/${course._id}`)}
                   className="common-btn"
@@ -57,6 +64,7 @@ const CourseCard = ({ course }) => {
               )}
             </>
           ) : (
+            // if user is admin, he is authorizeed to this page
             <button
               onClick={() => navigate(`/course/study/${course._id}`)}
               className="common-btn"
@@ -66,13 +74,15 @@ const CourseCard = ({ course }) => {
           )}
         </>
       ) : (
+        // if not authenticated
         <button onClick={() => navigate("/login")} className="common-btn">
           Get Started
         </button>
       )}
 
       <br />
-
+      
+      {/* Deleting the course, only admin can */}
       {user && user.role === "admin" && (
         <button
           onClick={() => deleteHandler(course._id)}
